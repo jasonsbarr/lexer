@@ -100,7 +100,6 @@ class LexerBase(ABC):
     """Abstract base class for Lexer, compiles rules into a single regex"""
 
     def __init__(self, rules: Iterable[Rule]):
-        """rules must be iterable"""
         re_frags = []
         self.groups = {}
         i = 1
@@ -122,7 +121,6 @@ class Lexer(LexerBase):
     """The lexer itself"""
 
     def __init__(self, rules: Iterable[Rule], skip_ws=False):
-        """rules must be iterable"""
         super().__init__(rules)
         self.skip_ws = skip_ws
 
