@@ -1,4 +1,5 @@
-from typing import Iterable, Iterator
+from types import NoneType
+from typing import Iterable, Iterator, Union
 from dataclasses import dataclass, astuple
 import re
 from abc import ABC, abstractmethod
@@ -88,7 +89,7 @@ class InputStream:
         else:
             self.col += 1
 
-    def eof(self):
+    def eof(self) -> bool:
         return self.pos >= len(self)
 
 
@@ -133,7 +134,7 @@ class Lexer(LexerBase):
 
         return self
 
-    def token(self):
+    def token(self) -> Union[Token, NoneType]:
         buf, pos, line, col = self.input_str["buf", "pos", "line", "col"]
 
         if self.input_str.eof():
