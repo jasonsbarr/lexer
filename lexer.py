@@ -1,4 +1,4 @@
-from typing import Iterable
+from typing import Iterable, Iterator
 from dataclasses import dataclass, astuple
 import re
 from abc import ABC, abstractmethod
@@ -114,7 +114,7 @@ class LexerBase(ABC):
         self.regex = re.compile("|".join(re_frags))
 
     @abstractmethod
-    def tokenize(self):
+    def tokenize(self) -> Iterator[Token]:
         pass
 
 
@@ -164,7 +164,7 @@ class Lexer(LexerBase):
         # No rule matched
         raise LexerError(buf[pos], line, col)
 
-    def tokenize(self):
+    def tokenize(self) -> Iterator[Token]:
         """Returns an iterator of the tokens found in the input buffer"""
         while not self.input_str.eof():
             tok = self.token()
