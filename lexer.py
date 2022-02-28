@@ -1,5 +1,5 @@
 from types import NoneType
-from typing import Iterable, Iterator, Union
+from typing import Iterable, Iterator, Union, Generator
 from dataclasses import dataclass, astuple
 import re
 from abc import ABC, abstractmethod
@@ -163,8 +163,8 @@ class Lexer(LexerBase):
         # No rule matched
         raise LexerError(buf[pos], line, col)
 
-    def tokenize(self) -> Iterator[Token]:
-        """Returns an iterator of the tokens found in the input buffer"""
+    def tokenize(self) -> Generator[Token]:
+        """Returns a generator of the tokens found in the input buffer"""
         while not self.input_str.eof():
             tok = self.token()
             if not tok is None:
