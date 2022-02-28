@@ -24,10 +24,10 @@ class Token:
     pos: int
 
     def __str__(self) -> str:
-        return f"Token(ty={self.type}, val={self.val})"
+        return f"Token(type={self.type}, val={self.val})"
 
     def __repr__(self) -> str:
-        return f"Token(ty={self.type}, val={self.val}, line={self.line}, col={self.col}, pos={self.pos})"
+        return f"Token(type={self.type}, val={self.val}, line={self.line}, col={self.col}, pos={self.pos})"
 
 
 @dataclass
