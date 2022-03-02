@@ -40,10 +40,6 @@ class Rule:
     name: str
     regex: str
 
-    def __init__(self, name: str, regex: str):
-        self.name = name
-        self.regex = regex
-
     def __str__(self) -> str:
         return f"Rule(name={self.name}, re={self.regex})"
 
