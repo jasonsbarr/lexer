@@ -124,9 +124,10 @@ class LexerBase(ABC):
         return self
 
     def extend(self, prepend_rules: Iterable[Rule] = None, append_rules: Iterable[Rule] = None):
-        """Extend the lexer with additional rules that can be either prepended or appended to the original rules
+        """
+        Extend the lexer with additional rules that can be either prepended or appended to the original rules
 
-        Must be used BEFORE calling self.compile
+        Must call self.compile after extending the rules list
         """
         if not prepend_rules is None:
             self.rules = list(prepend_rules) + self.rules
