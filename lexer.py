@@ -35,7 +35,7 @@ class Token:
 class Rule:
     """Regex-based rule that produces a token when applied to a valid lexeme
 
-    re_str should be a raw string
+    regex should be a raw string
     """
     name: str
     regex: str
