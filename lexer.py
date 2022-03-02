@@ -105,6 +105,10 @@ class LexerBase(ABC):
         self.groups = {}
 
     @abstractmethod
+    def token(self) -> Union[Token, NoneType]:
+        pass
+
+    @abstractmethod
     def tokenize(self) -> Iterator[Token]:
         pass
 
