@@ -109,6 +109,7 @@ class LexerBase(ABC):
         pass
 
     def compile_regex(self):
+        """Compiles the provided rules into a single regular expression"""
         re_frags = []
         i = 1
 
