@@ -101,11 +101,18 @@ class LexerBase(ABC):
     """Abstract base class for Lexer, compiles rules into a single regex"""
 
     def __init__(self, rules: Iterable[Rule]):
-        re_frags = []
+        self.rules = list(rules)
         self.groups = {}
+
+    @abstractmethod
+    def tokenize(self) -> Iterator[Token]:
+        pass
+
+    def compile_regex(self):
+        re_frags = []
         i = 1
 
-        for name, regex in rules:
+        for name, regex in self.rules:
             groupname = f"{name}{i}"
             re_frags.append(f"(?P<{groupname}>{regex})")
             self.groups[groupname] = name
@@ -113,9 +120,7 @@ class LexerBase(ABC):
 
         self.regex = re.compile("|".join(re_frags))
 
-    @abstractmethod
-    def tokenize(self) -> Iterator[Token]:
-        pass
+        return self
 
 
 class Lexer(LexerBase):
