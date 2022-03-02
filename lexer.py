@@ -108,7 +108,7 @@ class LexerBase(ABC):
     def tokenize(self) -> Iterator[Token]:
         pass
 
-    def compile_regex(self):
+    def compile(self):
         """Compiles the provided rules into a single regular expression"""
         re_frags = []
         i = 1
@@ -120,6 +120,19 @@ class LexerBase(ABC):
             i += 1
 
         self.regex = re.compile("|".join(re_frags))
+
+        return self
+
+    def extend(self, prepend_rules: Iterable[Rule] = None, append_rules: Iterable[Rule] = None):
+        """Extend the lexer with additional rules that can be either prepended or appended to the original rules
+
+        Must be used BEFORE calling self.compile
+        """
+        if not prepend_rules is None:
+            self.rules = list(prepend_rules) + self.rules
+
+        if not append_rules is None:
+            self.rules = self.rules + list(append_rules)
 
         return self
 
