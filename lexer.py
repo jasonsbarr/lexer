@@ -41,7 +41,7 @@ class Rule:
     regex: str
 
     def __str__(self) -> str:
-        return f"Rule(name={self.name}, re={self.regex})"
+        return f"Rule(name={self.name}, regex={self.regex})"
 
     def __repr__(self) -> str:
         return str(self)
