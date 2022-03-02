@@ -49,10 +49,6 @@ class Rule:
     def __iter__(self):
         return iter(astuple(self))
 
-    def __getitem__(self, keys):
-        """Enable destructuring-like syntax on the object, e.g.: name, regex = rule["name", "regex"]"""
-        return iter(getattr(self, k) for k in keys)
-
 
 class InputStream:
     """Manages the state of the input stream as the lexer processes it"""
